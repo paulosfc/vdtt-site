@@ -145,7 +145,7 @@ loginForm.addEventListener("submit", function(event) {
         setTimeout(() => {
 
             window.location.href =
-                "index.html";
+                "craft.html";
 
         }, 1000);
 

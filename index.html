@@ -1,393 +1,122 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Calculadora de Craft</title>
-
-    <link
-        rel="stylesheet"
-        href="assets/css/style.css"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Vendetta</title>
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
 
-
 <body>
-
-    <!-- ==========================================
-         HEADER
-    =========================================== -->
-
+    <!-- HEADER -->
     <header class="header">
 
         <div class="logo">
 
             <span>CRAFT</span>
-
             <small>CALCULADORA</small>
 
         </div>
 
     </header>
 
+    <!-- LOGIN -->
+    <main class="login-container">
 
-    <!-- ==========================================
-         MENU
-    =========================================== -->
+        <div class="login-card">
 
-    <nav class="menu">
-
-        <button
-            class="menu-btn active"
-            onclick="mostrarPagina('calculadora', this)"
-        >
-            Calculadora
-        </button>
-
-
-        <button
-            class="menu-btn"
-            onclick="mostrarPagina('receitas', this)"
-        >
-            Receitas
-        </button>
-
-
-        <button
-            class="menu-btn"
-            onclick="mostrarPagina('cadastrar', this)"
-        >
-            Cadastrar Receita
-        </button>
-
-    </nav>
-
-
-    <main class="container">
-
-
-        <!-- ======================================
-             CALCULADORA
-        ======================================= -->
-
-        <section
-            id="pagina-calculadora"
-            class="pagina"
-        >
-
-            <div class="hero">
-
-                <h1>
-                    Calculadora de Craft
-                </h1>
+            <div class="login-header">
+                <h1>Bem - Vindo</h1>
 
                 <p>
-                    Escolha um item, informe a quantidade
-                    e veja todos os materiais necessários.
+                    Entre na sua conta para acessar
+                    a calculadora de craft.
                 </p>
-
             </div>
 
+            <form id="loginForm">
 
-            <!-- FORMULÁRIO -->
+                <!-- USUARIO -->
+                <div class="input-group">
 
-            <div class="card">
-
-                <h2>
-                    Produzir item
-                </h2>
-
-
-                <div class="form-group">
-
-                    <label for="item">
-                        Item
-                    </label>
-
-                    <select id="item">
-
-                        <option value="">
-                            Selecione um item
-                        </option>
-
-                    </select>
-
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" placeholder="Digite seu usuário" autocomplete="username">
                 </div>
 
+                <!-- SENHA -->
+                <div class="input-group">
 
-                <div class="form-group">
+                    <label for="password">Senha</label>
 
-                    <label for="quantity">
-                        Quantidade
-                    </label>
+                    <div class="password-container">
 
-                    <input
-                        type="number"
-                        id="quantity"
-                        min="1"
-                        value="1"
-                    >
+                        <input type="password" id="password" placeholder="Digite sua senha"
+                            autocomplete="current-password">
 
-                </div>
-
-
-                <button
-                    type="button"
-                    class="btn-primary"
-                    onclick="calcularCraft()"
-                >
-                    Calcular materiais
-                </button>
-
-            </div>
-
-
-            <!-- ==================================
-                 RESULTADO
-            =================================== -->
-
-            <section
-                id="resultado"
-                class="resultado hidden"
-            >
-
-                <div class="result-header">
-
-                    <div>
-
-                        <span class="result-label">
-                            RESULTADO
-                        </span>
-
-                        <h2 id="resultadoTitulo">
-                            Materiais necessários
-                        </h2>
-
+                        <button type="button" id="togglePassword" class="toggle-password">👁</button>
                     </div>
 
                 </div>
 
+                <!-- LEMBRAR -->
+                <div class="login-options">
 
-                <!-- MATERIAIS DIRETOS E INTERMEDIÁRIOS -->
+                    <label class="remember">
 
-                <div
-                    id="listaMateriais"
-                    class="materials"
-                ></div>
+                        <input type="checkbox" id="remember">
+                        <span>Lembrar de mim</span>
 
-
-                <!-- ==================================
-                     TOTAL POR MATERIAL
-                =================================== -->
-
-                <div
-                    id="totalMateriaisContainer"
-                    class="total-materiais"
-                >
-
-                    <h3>
-                        📊 Total Geral de Matéria-Prima
-                    </h3>
-
-
-                    <div
-                        id="listaTotalMateriais"
-                    ></div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ==================================
-                 VALORES
-            =================================== -->
-
-            <section
-                id="resultadoValores"
-                class="resultado valores hidden"
-            >
-
-                <div class="result-header">
-
-                    <div>
-
-                        <span class="result-label">
-                            VALORES
-                        </span>
-
-                        <h2>
-                            💰 Valores do Produto
-                        </h2>
-
-                    </div>
-
-                </div>
-
-
-                <div id="listaValores"></div>
-
-            </section>
-
-
-            <!-- LIMPAR -->
-
-            <button
-                type="button"
-                class="btn-secondary"
-                onclick="limparCalculo()"
-            >
-                Limpar cálculo
-            </button>
-
-        </section>
-
-
-
-        <!-- ======================================
-             RECEITAS
-        ======================================= -->
-
-        <section
-            id="pagina-receitas"
-            class="pagina hidden"
-        >
-
-            <div class="page-title">
-
-                <span class="result-label">
-                    GERENCIAMENTO
-                </span>
-
-                <h1>
-                    Receitas cadastradas
-                </h1>
-
-                <p>
-                    Todas as receitas disponíveis
-                    para a calculadora.
-                </p>
-
-            </div>
-
-
-            <div
-                id="listaReceitas"
-                class="recipe-list"
-            ></div>
-
-        </section>
-
-
-
-        <!-- ======================================
-             CADASTRAR
-        ======================================= -->
-
-        <section
-            id="pagina-cadastrar"
-            class="pagina hidden"
-        >
-
-            <div class="page-title">
-
-                <span class="result-label">
-                    NOVA RECEITA
-                </span>
-
-                <h1>
-                    Cadastrar receita
-                </h1>
-
-                <p>
-                    Cadastre o produto e seus materiais.
-                    Os valores são configurados diretamente
-                    no código.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-
-                <!-- NOME -->
-
-                <div class="form-group">
-
-                    <label for="novoItem">
-                        Nome do item
                     </label>
 
-                    <input
-                        type="text"
-                        id="novoItem"
-                        placeholder="Ex: Pistola"
-                    >
+                    <a href="#" id="forgotPassword">
+                        Esqueci minha senha
+                    </a>
 
                 </div>
 
+                <!-- MENSAGEM -->
+                <div class="message" id="message"></div>
 
-                <!-- MATERIAIS -->
+                <!-- BOTÃO -->
+                <button type="submit" class="login-button">ENTRAR</button>
 
-                <h3 class="subtitle">
-                    Materiais necessários
-                </h3>
+            </form>
 
+            <!-- CADASTRO -->
+            <div class="register">
+                <span>
+                    Ainda não possuir uma conta?
+                </span>
 
-                <div
-                    id="materiaisCadastro"
-                    class="materials-form"
-                ></div>
-
-
-                <button
-                    type="button"
-                    class="btn-add"
-                    onclick="adicionarMaterial()"
-                >
-                    + Adicionar material
-                </button>
-
-
-                <button
-                    type="button"
-                    class="btn-primary save-btn"
-                    onclick="salvarReceita()"
-                >
-                    Salvar receita
-                </button>
+                <a href="#">Cadastrar - se</a>
 
             </div>
 
-        </section>
+        </div>
 
     </main>
 
 
-    <!-- ==========================================
-         FOOTER
-    =========================================== -->
 
+    <!-- FOOTER -->
     <footer>
 
-        <p>
-            VENDETTA © 2026
-        </p>
+        <span>VENDETTA © 2026</span>
 
     </footer>
 
 
-    <script src="assets/js/script.js"></script>
 
+
+
+
+
+
+
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/encomendas.js"></script>
 </body>
 
 </html>

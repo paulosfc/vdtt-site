@@ -904,3 +904,597 @@ footer {
     }
 
 }
+
+/* =====================================================
+   ENCOMENDAS
+===================================================== */
+
+.encomendas-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =====================================================
+   FILTROS
+===================================================== */
+
+.encomendas-filtros {
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.encomendas-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(300px, 1fr)
+        );
+
+    gap: 18px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.encomenda-card {
+
+    background: #1b1b1b;
+
+    border: 1px solid #303030;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    transition: 0.2s;
+
+}
+
+
+.encomenda-card:hover {
+
+    border-color: #4a4a4a;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.2);
+
+}
+
+
+/* =====================================================
+   CABEÇALHO
+===================================================== */
+
+.encomenda-card-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.encomenda-card h3 {
+
+    margin: 0 0 5px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+}
+
+
+.encomenda-id {
+
+    color: #777777;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.encomenda-status {
+
+    padding: 5px 9px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+
+.encomenda-status.pendente {
+
+    color: #ff9d3d;
+
+    background:
+        rgba(
+            255,
+            122,
+            0,
+            0.10
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            122,
+            0,
+            0.25
+        );
+
+}
+
+
+.encomenda-status.concluida {
+
+    color: #6ee7a0;
+
+    background:
+        rgba(
+            110,
+            231,
+            160,
+            0.08
+        );
+
+    border:
+        1px solid
+        rgba(
+            110,
+            231,
+            160,
+            0.20
+        );
+
+}
+
+
+/* =====================================================
+   PRODUTO
+===================================================== */
+
+.encomenda-produto {
+
+    padding: 14px;
+
+    background: #151515;
+
+    border-radius: 7px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.encomenda-produto span {
+
+    display: block;
+
+    color: #888888;
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.encomenda-produto strong {
+
+    color: #ff7a00;
+
+    font-size: 17px;
+
+}
+
+
+/* =====================================================
+   INFORMAÇÕES
+===================================================== */
+
+.encomenda-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid #2d2d2d;
+
+}
+
+
+.encomenda-info-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    font-size: 13px;
+
+}
+
+
+.encomenda-info-row span:first-child {
+
+    color: #888888;
+
+}
+
+
+.encomenda-info-row span:last-child {
+
+    color: #dddddd;
+
+    text-align: right;
+
+}
+
+
+/* =====================================================
+   VALOR
+===================================================== */
+
+.encomenda-valor {
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 7px;
+
+    background:
+        rgba(
+            255,
+            122,
+            0,
+            0.07
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            122,
+            0,
+            0.18
+        );
+
+}
+
+
+.encomenda-valor small {
+
+    display: block;
+
+    color: #888888;
+
+    margin-bottom: 3px;
+
+}
+
+
+.encomenda-valor strong {
+
+    color: #ff7a00;
+
+    font-size: 18px;
+
+}
+
+
+/* =====================================================
+   OBSERVAÇÕES
+===================================================== */
+
+.encomenda-observacoes {
+
+    margin-top: 14px;
+
+    padding: 10px;
+
+    background: #151515;
+
+    border-radius: 6px;
+
+    color: #999999;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =====================================================
+   AÇÕES
+===================================================== */
+
+.encomenda-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+
+    margin-top: 17px;
+
+}
+
+
+.encomenda-actions button {
+
+    border-radius: 6px;
+
+    padding: 9px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+
+}
+
+
+.btn-concluir-encomenda {
+
+    border:
+        1px solid
+        rgba(
+            110,
+            231,
+            160,
+            0.25
+        );
+
+    background:
+        rgba(
+            110,
+            231,
+            160,
+            0.08
+        );
+
+    color: #6ee7a0;
+
+}
+
+
+.btn-concluir-encomenda:hover {
+
+    background:
+        rgba(
+            110,
+            231,
+            160,
+            0.15
+        );
+
+}
+
+
+.btn-reabrir-encomenda {
+
+    border:
+        1px solid
+        rgba(
+            255,
+            122,
+            0,
+            0.25
+        );
+
+    background:
+        rgba(
+            255,
+            122,
+            0,
+            0.08
+        );
+
+    color: #ff9d3d;
+
+}
+
+
+.btn-editar-encomenda {
+
+    border:
+        1px solid #3c3c3c;
+
+    background: #252525;
+
+    color: #ffffff;
+
+}
+
+
+.btn-editar-encomenda:hover {
+
+    border-color: #ff7a00;
+
+    color: #ff7a00;
+
+}
+
+
+.btn-excluir-encomenda {
+
+    border:
+        1px solid
+        rgba(
+            255,
+            70,
+            70,
+            0.25
+        );
+
+    background:
+        rgba(
+            255,
+            70,
+            70,
+            0.08
+        );
+
+    color: #ff6b6b;
+
+}
+
+
+.btn-excluir-encomenda:hover {
+
+    background:
+        rgba(
+            255,
+            70,
+            70,
+            0.15
+        );
+
+}
+
+
+/* =====================================================
+   PREVIEW DO VALOR
+===================================================== */
+
+.valor-encomenda-preview {
+
+    margin: 20px 0;
+
+    padding: 15px;
+
+    background:
+        rgba(
+            255,
+            122,
+            0,
+            0.07
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            122,
+            0,
+            0.20
+        );
+
+    border-radius: 8px;
+
+    color: #bbbbbb;
+
+    line-height: 1.7;
+
+}
+
+
+.valor-encomenda-preview strong {
+
+    color: #ff7a00;
+
+    font-size: 20px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .encomendas-stats {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .encomendas-filtros {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .encomenda-card {
+
+        padding: 16px;
+
+    }
+
+    .encomenda-actions {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}

@@ -307,6 +307,16 @@ function mostrarPagina(
 
     }
 
+    if (pagina === "encomendas") {
+
+    carregarProdutosEncomenda();
+
+    carregarFiltroProdutosEncomenda();
+
+    mostrarEncomendas();
+
+}
+
 }
 
 

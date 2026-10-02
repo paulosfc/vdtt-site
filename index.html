@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Calculadora de Craft</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <span>CRAFT</span>
+
+            <small>CALCULADORA</small>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         MENU
+    =========================================== -->
+
+    <nav class="menu">
+
+        <button
+            class="menu-btn active"
+            onclick="mostrarPagina('calculadora', this)"
+        >
+            Calculadora
+        </button>
+
+
+        <button
+            class="menu-btn"
+            onclick="mostrarPagina('receitas', this)"
+        >
+            Receitas
+        </button>
+
+
+        <button
+            class="menu-btn"
+            onclick="mostrarPagina('cadastrar', this)"
+        >
+            Cadastrar Receita
+        </button>
+
+    </nav>
+
+
+    <main class="container">
+
+
+        <!-- ======================================
+             CALCULADORA
+        ======================================= -->
+
+        <section
+            id="pagina-calculadora"
+            class="pagina"
+        >
+
+            <div class="hero">
+
+                <h1>
+                    Calculadora de Craft
+                </h1>
+
+                <p>
+                    Escolha um item, informe a quantidade
+                    e veja todos os materiais necessários.
+                </p>
+
+            </div>
+
+
+            <!-- FORMULÁRIO -->
+
+            <div class="card">
+
+                <h2>
+                    Produzir item
+                </h2>
+
+
+                <div class="form-group">
+
+                    <label for="item">
+                        Item
+                    </label>
+
+                    <select id="item">
+
+                        <option value="">
+                            Selecione um item
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="quantity">
+                        Quantidade
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        min="1"
+                        value="1"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-primary"
+                    onclick="calcularCraft()"
+                >
+                    Calcular materiais
+                </button>
+
+            </div>
+
+
+            <!-- ==================================
+                 RESULTADO
+            =================================== -->
+
+            <section
+                id="resultado"
+                class="resultado hidden"
+            >
+
+                <div class="result-header">
+
+                    <div>
+
+                        <span class="result-label">
+                            RESULTADO
+                        </span>
+
+                        <h2 id="resultadoTitulo">
+                            Materiais necessários
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MATERIAIS DIRETOS E INTERMEDIÁRIOS -->
+
+                <div
+                    id="listaMateriais"
+                    class="materials"
+                ></div>
+
+
+                <!-- ==================================
+                     TOTAL POR MATERIAL
+                =================================== -->
+
+                <div
+                    id="totalMateriaisContainer"
+                    class="total-materiais"
+                >
+
+                    <h3>
+                        📊 Total Geral de Matéria-Prima
+                    </h3>
+
+
+                    <div
+                        id="listaTotalMateriais"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 VALORES
+            =================================== -->
+
+            <section
+                id="resultadoValores"
+                class="resultado valores hidden"
+            >
+
+                <div class="result-header">
+
+                    <div>
+
+                        <span class="result-label">
+                            VALORES
+                        </span>
+
+                        <h2>
+                            💰 Valores do Produto
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div id="listaValores"></div>
+
+            </section>
+
+
+            <!-- LIMPAR -->
+
+            <button
+                type="button"
+                class="btn-secondary"
+                onclick="limparCalculo()"
+            >
+                Limpar cálculo
+            </button>
+
+        </section>
+
+
+
+        <!-- ======================================
+             RECEITAS
+        ======================================= -->
+
+        <section
+            id="pagina-receitas"
+            class="pagina hidden"
+        >
+
+            <div class="page-title">
+
+                <span class="result-label">
+                    GERENCIAMENTO
+                </span>
+
+                <h1>
+                    Receitas cadastradas
+                </h1>
+
+                <p>
+                    Todas as receitas disponíveis
+                    para a calculadora.
+                </p>
+
+            </div>
+
+
+            <div
+                id="listaReceitas"
+                class="recipe-list"
+            ></div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             CADASTRAR
+        ======================================= -->
+
+        <section
+            id="pagina-cadastrar"
+            class="pagina hidden"
+        >
+
+            <div class="page-title">
+
+                <span class="result-label">
+                    NOVA RECEITA
+                </span>
+
+                <h1>
+                    Cadastrar receita
+                </h1>
+
+                <p>
+                    Cadastre o produto e seus materiais.
+                    Os valores são configurados diretamente
+                    no código.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+
+                <!-- NOME -->
+
+                <div class="form-group">
+
+                    <label for="novoItem">
+                        Nome do item
+                    </label>
+
+                    <input
+                        type="text"
+                        id="novoItem"
+                        placeholder="Ex: Pistola"
+                    >
+
+                </div>
+
+
+                <!-- MATERIAIS -->
+
+                <h3 class="subtitle">
+                    Materiais necessários
+                </h3>
+
+
+                <div
+                    id="materiaisCadastro"
+                    class="materials-form"
+                ></div>
+
+
+                <button
+                    type="button"
+                    class="btn-add"
+                    onclick="adicionarMaterial()"
+                >
+                    + Adicionar material
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn-primary save-btn"
+                    onclick="salvarReceita()"
+                >
+                    Salvar receita
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer>
+
+        <p>
+            VENDETTA © 2026
+        </p>
+
+    </footer>
+
+
+    <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>

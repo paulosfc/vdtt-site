@@ -27,7 +27,7 @@ const USER = {
 
     username: "admin",
 
-    password: "123456"
+    password: "vdtt123"
 
 };
 

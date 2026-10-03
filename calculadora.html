@@ -58,10 +58,7 @@
         </button>
 
         <button class="menu-btn" onclick="mostrarPagina('encomendas', this)">
-            📦
-            <span>
-                Encomendas
-            </span>
+            Encomendas
         </button>
 
     </nav>
@@ -312,217 +309,15 @@
 
         </section>
 
-    </main>
 
 
-    <!-- ENCOMENDAS -->
-
-    <!-- ======================================
+        <!-- ======================================
      ENCOMENDAS
 ====================================== -->
 
-    <section id="pagina-encomendas" class="pagina hidden">
+        <section id="pagina-encomendas" class="pagina hidden">
 
-        <div class="page-header">
-
-            <div>
-
-                <span class="section-label">
-                    ENCOMENDAS
-                </span>
-
-                <h1>
-                    Gerenciamento de Encomendas
-                </h1>
-
-                <p>
-                    Crie e acompanhe as encomendas dos produtos.
-                </p>
-
-            </div>
-
-
-            <button type="button" class="btn-primary" onclick="abrirModalEncomenda()">
-                + Nova Encomenda
-            </button>
-
-        </div>
-
-
-        <!-- ==================================
-         ESTATÍSTICAS
-    =================================== -->
-
-        <div class="encomendas-stats">
-
-            <div class="stat-card">
-
-                <span class="stat-icon">
-                    📦
-                </span>
-
-                <div>
-
-                    <small>
-                        Total
-                    </small>
-
-                    <strong id="totalEncomendas">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <span class="stat-icon">
-                    🟠
-                </span>
-
-                <div>
-
-                    <small>
-                        Pendentes
-                    </small>
-
-                    <strong id="encomendasPendentes">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <span class="stat-icon">
-                    🟢
-                </span>
-
-                <div>
-
-                    <small>
-                        Concluídas
-                    </small>
-
-                    <strong id="encomendasConcluidas">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- ==================================
-         FILTROS
-    =================================== -->
-
-        <div class="card encomendas-filtros">
-
-            <div class="input-group">
-
-                <label for="pesquisaEncomenda">
-                    Pesquisar
-                </label>
-
-                <input type="text" id="pesquisaEncomenda" placeholder="Produto ou cliente..."
-                    oninput="mostrarEncomendas()">
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label for="filtroProdutoEncomenda">
-                    Produto
-                </label>
-
-                <select id="filtroProdutoEncomenda" onchange="mostrarEncomendas()">
-
-                    <option value="">
-                        Todos os produtos
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label for="filtroStatusEncomenda">
-                    Status
-                </label>
-
-                <select id="filtroStatusEncomenda" onchange="mostrarEncomendas()">
-
-                    <option value="">
-                        Todos
-                    </option>
-
-                    <option value="Pendente">
-                        Pendentes
-                    </option>
-
-                    <option value="Concluída">
-                        Concluídas
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <!-- ==================================
-         LISTA
-    =================================== -->
-
-        <div id="listaEncomendas" class="encomendas-grid"></div>
-
-
-        <!-- ==================================
-         VAZIO
-    =================================== -->
-
-        <div id="encomendasVazio" class="card empty-state hidden">
-
-            <span>
-                📦
-            </span>
-
-            <h3>
-                Nenhuma encomenda encontrada
-            </h3>
-
-            <p>
-                Crie uma nova encomenda para começar.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==========================================
-     MODAL DE ENCOMENDA
-========================================== -->
-
-    <div id="modalEncomenda" class="modal-overlay hidden">
-
-        <div class="modal-card">
-
-            <!-- CABEÇALHO -->
-
-            <div class="modal-header">
+            <div class="page-header">
 
                 <div>
 
@@ -530,153 +325,354 @@
                         ENCOMENDAS
                     </span>
 
-                    <h2 id="modalEncomendaTitulo">
-                        Nova Encomenda
-                    </h2>
+                    <h1>
+                        Gerenciamento de Encomendas
+                    </h1>
+
+                    <p>
+                        Crie e acompanhe as encomendas dos produtos.
+                    </p>
 
                 </div>
 
 
-                <button type="button" class="modal-close" onclick="fecharModalEncomenda()">
-                    ×
+                <button type="button" class="btn-primary" onclick="abrirModalEncomenda()">
+                    + Nova Encomenda
                 </button>
 
             </div>
 
 
-            <!-- FORMULÁRIO -->
+            <!-- ==================================
+         ESTATÍSTICAS
+    =================================== -->
 
-            <form id="formEncomenda" onsubmit="salvarEncomenda(event)">
+            <div class="encomendas-stats">
 
-                <input type="hidden" id="encomendaId">
+                <div class="stat-card">
 
+                    <span class="stat-icon">
+                        📦
+                    </span>
 
-                <!-- CAMPOS -->
+                    <div>
 
-                <div class="form-grid">
+                        <small>
+                            Total
+                        </small>
 
-                    <!-- PRODUTO -->
-
-                    <div class="input-group">
-
-                        <label for="encomendaProduto">
-                            Produto
-                        </label>
-
-                        <select id="encomendaProduto" onchange="atualizarValorEncomenda()" required>
-
-                            <option value="">
-                                Selecione um produto
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- QUANTIDADE -->
-
-                    <div class="input-group">
-
-                        <label for="encomendaQuantidade">
-                            Quantidade
-                        </label>
-
-                        <input type="number" id="encomendaQuantidade" min="1" value="1"
-                            oninput="atualizarValorEncomenda()" required>
-
-                    </div>
-
-
-                    <!-- TIPO -->
-
-                    <div class="input-group">
-
-                        <label for="encomendaTipo">
-                            Tipo de Cliente
-                        </label>
-
-                        <select id="encomendaTipo" onchange="atualizarValorEncomenda()" required>
-
-                            <option value="CNPJ">
-                                CNPJ
-                            </option>
-
-                            <option value="CPF">
-                                CPF
-                            </option>
-
-                            <option value="Parceria">
-                                Parceria
-                            </option>
-
-                            <option value="Aliado">
-                                Aliado
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- CLIENTE -->
-
-                    <div class="input-group">
-
-                        <label for="encomendaCliente">
-                            Cliente
-                        </label>
-
-                        <input type="text" id="encomendaCliente" placeholder="Nome do Cliente...">
+                        <strong id="totalEncomendas">
+                            0
+                        </strong>
 
                     </div>
 
                 </div>
 
 
-                <!-- VALOR -->
+                <div class="stat-card">
 
-                <div id="valorEncomendaPreview" class="valor-encomenda-preview">
-                    Selecione um produto
+                    <span class="stat-icon">
+                        🟠
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Pendentes
+                        </small>
+
+                        <strong id="encomendasPendentes">
+                            0
+                        </strong>
+
+                    </div>
+
                 </div>
 
 
-                <!-- OBSERVAÇÕES -->
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        🟢
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Concluídas
+                        </small>
+
+                        <strong id="encomendasConcluidas">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+         FILTROS
+    =================================== -->
+
+            <div class="card encomendas-filtros">
 
                 <div class="input-group">
 
-                    <label for="encomendaObservacoes">
-                        Observações
+                    <label for="pesquisaEncomenda">
+                        Pesquisar
                     </label>
 
-                    <textarea id="encomendaObservacoes" rows="4" placeholder="Observações da encomenda..."></textarea>
+                    <input type="text" id="pesquisaEncomenda" placeholder="Produto ou cliente..."
+                        oninput="mostrarEncomendas()">
 
                 </div>
 
 
-                <!-- BOTÕES -->
+                <div class="input-group">
 
-                <div class="modal-actions">
+                    <label for="filtroProdutoEncomenda">
+                        Produto
+                    </label>
 
-                    <button type="button" class="btn-secondary" onclick="fecharModalEncomenda()">
-                        Cancelar
-                    </button>
+                    <select id="filtroProdutoEncomenda" onchange="mostrarEncomendas()">
 
-                    <button type="submit" class="btn-primary">
-                        Salvar Encomenda
-                    </button>
+                        <option value="">
+                            Todos os produtos
+                        </option>
 
-                    <button type="button" class="logout-btn" onclick="logout()">
-                        Sair
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="filtroStatusEncomenda">
+                        Status
+                    </label>
+
+                    <select id="filtroStatusEncomenda" onchange="mostrarEncomendas()">
+
+                        <option value="">
+                            Todos
+                        </option>
+
+                        <option value="Pendente">
+                            Pendentes
+                        </option>
+
+                        <option value="Concluída">
+                            Concluídas
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+         LISTA
+    =================================== -->
+
+            <div id="listaEncomendas" class="encomendas-grid"></div>
+
+
+            <!-- ==================================
+         VAZIO
+    =================================== -->
+
+            <div id="encomendasVazio" class="card empty-state hidden">
+
+                <span>
+                    📦
+                </span>
+
+                <h3>
+                    Nenhuma encomenda encontrada
+                </h3>
+
+                <p>
+                    Crie uma nova encomenda para começar.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+     MODAL DE ENCOMENDA
+========================================== -->
+
+        <div id="modalEncomenda" class="modal-overlay hidden">
+
+            <div class="modal-card">
+
+                <!-- CABEÇALHO -->
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            ENCOMENDAS
+                        </span>
+
+                        <h2 id="modalEncomendaTitulo">
+                            Nova Encomenda
+                        </h2>
+
+                    </div>
+
+
+                    <button type="button" class="modal-close" onclick="fecharModalEncomenda()">
+                        ×
                     </button>
 
                 </div>
 
-            </form>
+
+                <!-- FORMULÁRIO -->
+
+                <form id="formEncomenda" onsubmit="salvarEncomenda(event)">
+
+                    <input type="hidden" id="encomendaId">
+
+
+                    <!-- CAMPOS -->
+
+                    <div class="form-grid">
+
+                        <!-- PRODUTO -->
+
+                        <div class="input-group">
+
+                            <label for="encomendaProduto">
+                                Produto
+                            </label>
+
+                            <select id="encomendaProduto" onchange="atualizarValorEncomenda()" required>
+
+                                <option value="">
+                                    Selecione um produto
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- QUANTIDADE -->
+
+                        <div class="input-group">
+
+                            <label for="encomendaQuantidade">
+                                Quantidade
+                            </label>
+
+                            <input type="number" id="encomendaQuantidade" min="1" value="1"
+                                oninput="atualizarValorEncomenda()" required>
+
+                        </div>
+
+
+                        <!-- TIPO -->
+
+                        <div class="input-group">
+
+                            <label for="encomendaTipo">
+                                Tipo de Cliente
+                            </label>
+
+                            <select id="encomendaTipo" onchange="atualizarValorEncomenda()" required>
+
+                                <option value="CNPJ">
+                                    CNPJ
+                                </option>
+
+                                <option value="CPF">
+                                    CPF
+                                </option>
+
+                                <option value="Parceria">
+                                    Parceria
+                                </option>
+
+                                <option value="Aliado">
+                                    Aliado
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- CLIENTE -->
+
+                        <div class="input-group">
+
+                            <label for="encomendaCliente">
+                                Cliente
+                            </label>
+
+                            <input type="text" id="encomendaCliente" placeholder="Nome do Cliente...">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- VALOR -->
+
+                    <div id="valorEncomendaPreview" class="valor-encomenda-preview">
+                        Selecione um produto
+                    </div>
+
+
+                    <!-- OBSERVAÇÕES -->
+
+                    <div class="input-group">
+
+                        <label for="encomendaObservacoes">
+                            Observações
+                        </label>
+
+                        <textarea id="encomendaObservacoes" rows="4"
+                            placeholder="Observações da encomenda..."></textarea>
+
+                    </div>
+
+
+                    <!-- BOTÕES -->
+
+                    <div class="modal-actions">
+
+                        <button type="button" class="btn-secondary" onclick="fecharModalEncomenda()">
+                            Cancelar
+                        </button>
+
+                        <button type="submit" class="btn-primary">
+                            Salvar Encomenda
+                        </button>
+
+                        <button type="button" class="logout-btn" onclick="logout()">
+                            Sair
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
 
         </div>
-
-    </div>
+    </main>
 
     <!-- ==========================================
          FOOTER
@@ -690,8 +686,9 @@
 
     </footer>
 
-
-
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/encomendas.js"></script>
 
 </body>
 

@@ -151,7 +151,7 @@ if (loginForm) {
 
             setTimeout(() => {
 
-                window.location.replace("index.html");
+                window.location.replace("calculadora.html");
 
             }, 500);
 

@@ -16,8 +16,8 @@ let receitas = JSON.parse(
 
     // Não protege a página de login
     if (
-        paginaAtual.endsWith("/login.html") ||
-        paginaAtual.endsWith("login.html")
+        paginaAtual.endsWith("/index.html") ||
+        paginaAtual.endsWith("index.html")
     ) {
         return;
     }
@@ -35,7 +35,7 @@ let receitas = JSON.parse(
         loginSession !== "true"
     ) {
 
-        window.location.replace("login.html");
+        window.location.replace("index.html");
 
     }
 

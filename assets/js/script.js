@@ -39,7 +39,7 @@ let receitas = JSON.parse(
         loginSession !== "true"
     ) {
 
-        window.location.href = "login.html";
+        window.location.href = "index.html";
 
     }
 
@@ -57,7 +57,7 @@ function logout() {
 
     sessionStorage.removeItem("craftLogged");
 
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 

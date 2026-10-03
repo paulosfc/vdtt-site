@@ -16,6 +16,10 @@
 
 <body>
 
+    <div class="usuario-logado">
+        Olá, <strong id="usuarioLogado"></strong>
+    </div>
+
     <!-- ==========================================
          HEADER
     =========================================== -->
@@ -508,7 +512,6 @@
     </section>
 
 
-    <!-- MODAL DE ENCOMENDA -->
     <!-- ==========================================
      MODAL DE ENCOMENDA
 ========================================== -->
@@ -659,9 +662,12 @@
                         Cancelar
                     </button>
 
-
                     <button type="submit" class="btn-primary">
                         Salvar Encomenda
+                    </button>
+
+                    <button type="button" class="logout-btn" onclick="logout()">
+                        Sair
                     </button>
 
                 </div>

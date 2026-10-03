@@ -145,7 +145,7 @@ loginForm.addEventListener("submit", function(event) {
         setTimeout(() => {
 
             window.location.href =
-                "craft.html";
+                "calculadora.html";
 
         }, 1000);
 

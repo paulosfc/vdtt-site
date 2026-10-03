@@ -21,6 +21,62 @@ let receitas = JSON.parse(
    valores exibidos.
 ========================================================= */
 
+/* =========================================================
+   PROTEÇÃO DA CALCULADORA
+========================================================= */
+
+(function verificarLogin() {
+
+    const loginLocal =
+        localStorage.getItem("craftLogged");
+
+    const loginSession =
+        sessionStorage.getItem("craftLogged");
+
+
+    if (
+        loginLocal !== "true" &&
+        loginSession !== "true"
+    ) {
+
+        window.location.href = "login.html";
+
+    }
+
+})();
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout() {
+
+    localStorage.removeItem("craftLogged");
+    localStorage.removeItem("craftUser");
+
+    sessionStorage.removeItem("craftLogged");
+
+    window.location.href = "login.html";
+}
+
+
+function mostrarUsuarioLogado() {
+
+    const elemento =
+        document.getElementById("usuarioLogado");
+
+    if (!elemento) {
+        return;
+    }
+
+    const usuario =
+        localStorage.getItem("craftUser") ||
+        "Usuário";
+
+    elemento.textContent = usuario;
+}
+
 const valoresPorProduto = {
 
     "Five": {
@@ -243,57 +299,64 @@ function salvarLocalStorage() {
    MENU
 ========================================================= */
 
-function mostrarPagina(
-    pagina,
-    botao
-) {
+function mostrarPagina(pagina, botao) {
 
+    console.log("Abrindo página:", pagina);
+
+    // Esconde todas as páginas
     document
         .querySelectorAll(".pagina")
         .forEach(secao => {
 
-            secao.classList.add(
-                "hidden"
-            );
+            secao.classList.add("hidden");
 
         });
 
 
+    // Procura a página selecionada
     const paginaSelecionada =
         document.getElementById(
             `pagina-${pagina}`
         );
 
 
-    if (paginaSelecionada) {
+    if (!paginaSelecionada) {
 
-        paginaSelecionada.classList.remove(
-            "hidden"
+        console.error(
+            "Página não encontrada:",
+            `pagina-${pagina}`
         );
+
+        return;
 
     }
 
 
+    // Mostra a página
+    paginaSelecionada.classList.remove(
+        "hidden"
+    );
+
+
+    // Remove active dos botões
     document
         .querySelectorAll(".menu-btn")
         .forEach(btn => {
 
-            btn.classList.remove(
-                "active"
-            );
+            btn.classList.remove("active");
 
         });
 
 
+    // Ativa o botão clicado
     if (botao) {
 
-        botao.classList.add(
-            "active"
-        );
+        botao.classList.add("active");
 
     }
 
 
+    // Funções específicas
     if (pagina === "calculadora") {
 
         carregarItens();
@@ -307,15 +370,28 @@ function mostrarPagina(
 
     }
 
+
     if (pagina === "encomendas") {
 
-    carregarProdutosEncomenda();
+        if (typeof carregarProdutosEncomenda === "function") {
 
-    carregarFiltroProdutosEncomenda();
+            carregarProdutosEncomenda();
 
-    mostrarEncomendas();
+        }
 
-}
+        if (typeof carregarFiltroProdutosEncomenda === "function") {
+
+            carregarFiltroProdutosEncomenda();
+
+        }
+
+        if (typeof mostrarEncomendas === "function") {
+
+            mostrarEncomendas();
+
+        }
+
+    }
 
 }
 
@@ -1119,9 +1195,9 @@ function mostrarResultadoCompleto(
 
             Produção final:
             ${formatarNumero(
-                craftsNecessarios *
-                quantidadePorCraft
-            )}
+        craftsNecessarios *
+        quantidadePorCraft
+    )}
 
         </span>
 
@@ -1218,15 +1294,15 @@ function mostrarResultadoCompleto(
 
                 ×
                 ${formatarNumero(
-                    intermediario.quantidade
-                )}
+                intermediario.quantidade
+            )}
 
                 <span class="crafts-info">
 
                     (
                     ${formatarNumero(
-                        intermediario.crafts
-                    )}
+                intermediario.crafts
+            )}
                     crafts)
 
                 </span>
@@ -1311,8 +1387,8 @@ function mostrarResultadoCompleto(
 
                 <strong>
                     ${formatarNumero(
-                        quantidade
-                    )}
+                quantidade
+            )}
                 </strong>
 
             `;
@@ -2357,10 +2433,9 @@ document.addEventListener(
     () => {
 
         carregarItens();
-
         mostrarReceitas();
-
         adicionarMaterial();
+        mostrarUsuarioLogado();
 
     }
 );

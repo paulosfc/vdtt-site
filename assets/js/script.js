@@ -7,25 +7,21 @@ let receitas = JSON.parse(
 ) || {};
 
 
-/* =========================================================
-   VALORES DOS PRODUTOS
-
-   IMPORTANTE:
-
-   Os valores NÃO são cadastrados pelo formulário.
-
-   Você coloca somente aqui os produtos que possuem
-   valores.
-
-   Produtos que não estiverem nesta lista não terão
-   valores exibidos.
-========================================================= */
-
-/* =========================================================
-   PROTEÇÃO DA CALCULADORA
-========================================================= */
 
 (function verificarLogin() {
+
+    const paginaAtual =
+        window.location.pathname.toLowerCase();
+
+
+    // Não protege a página de login
+    if (
+        paginaAtual.endsWith("/login.html") ||
+        paginaAtual.endsWith("login.html")
+    ) {
+        return;
+    }
+
 
     const loginLocal =
         localStorage.getItem("craftLogged");
@@ -39,7 +35,7 @@ let receitas = JSON.parse(
         loginSession !== "true"
     ) {
 
-        window.location.href = "index.html";
+        window.location.replace("login.html");
 
     }
 
@@ -76,6 +72,27 @@ function mostrarUsuarioLogado() {
 
     elemento.textContent = usuario;
 }
+
+
+
+/* =========================================================
+   VALORES DOS PRODUTOS
+
+   IMPORTANTE:
+
+   Os valores NÃO são cadastrados pelo formulário.
+
+   Você coloca somente aqui os produtos que possuem
+   valores.
+
+   Produtos que não estiverem nesta lista não terão
+   valores exibidos.
+========================================================= */
+
+/* =========================================================
+   PROTEÇÃO DA CALCULADORA
+========================================================= */
+
 
 const valoresPorProduto = {
 

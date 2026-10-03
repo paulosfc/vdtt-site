@@ -3,32 +3,21 @@
 ===================================== */
 
 const loginForm = document.getElementById("loginForm");
-
 const usernameInput = document.getElementById("username");
-
 const passwordInput = document.getElementById("password");
-
 const rememberInput = document.getElementById("remember");
-
 const message = document.getElementById("message");
-
-const togglePassword =
-    document.getElementById("togglePassword");
-
-const forgotPassword =
-    document.getElementById("forgotPassword");
+const togglePassword = document.getElementById("togglePassword");
+const forgotPassword = document.getElementById("forgotPassword");
 
 
 /* =====================================
-   USUÁRIO DEMONSTRAÇÃO
+   USUÁRIO
 ===================================== */
 
 const USER = {
-
     username: "admin",
-
     password: "vdtt123"
-
 };
 
 
@@ -36,23 +25,25 @@ const USER = {
    MOSTRAR / OCULTAR SENHA
 ===================================== */
 
-togglePassword.addEventListener("click", () => {
+if (togglePassword) {
 
-    if (passwordInput.type === "password") {
+    togglePassword.addEventListener("click", () => {
 
-        passwordInput.type = "text";
+        if (passwordInput.type === "password") {
 
-        togglePassword.textContent = "🙈";
+            passwordInput.type = "text";
+            togglePassword.textContent = "🙈";
 
-    } else {
+        } else {
 
-        passwordInput.type = "password";
+            passwordInput.type = "password";
+            togglePassword.textContent = "👁";
 
-        togglePassword.textContent = "👁";
+        }
 
-    }
+    });
 
-});
+}
 
 
 /* =====================================
@@ -61,8 +52,9 @@ togglePassword.addEventListener("click", () => {
 
 function showMessage(text, type) {
 
-    message.textContent = text;
+    if (!message) return;
 
+    message.textContent = text;
     message.className = "message " + type;
 
 }
@@ -72,109 +64,129 @@ function showMessage(text, type) {
    LOGIN
 ===================================== */
 
-loginForm.addEventListener("submit", function(event) {
+if (loginForm) {
 
-    event.preventDefault();
+    loginForm.addEventListener("submit", function (event) {
 
+        event.preventDefault();
 
-    const username =
-        usernameInput.value.trim();
-
-    const password =
-        passwordInput.value;
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
 
 
-    /* VALIDAR CAMPOS */
+        /* -----------------------------
+           VALIDAR CAMPOS
+        ----------------------------- */
 
-    if (!username || !password) {
+        if (!username || !password) {
 
-        showMessage(
-            "Preencha usuário e senha.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /* VALIDAR LOGIN */
-
-    if (
-        username === USER.username &&
-        password === USER.password
-    ) {
-
-        showMessage(
-            "Login realizado com sucesso!",
-            "success"
-        );
-
-
-        /* SALVAR LOGIN */
-
-        if (rememberInput.checked) {
-
-            localStorage.setItem(
-                "craftLogged",
-                "true"
+            showMessage(
+                "Preencha usuário e senha.",
+                "error"
             );
 
-            localStorage.setItem(
-                "craftUser",
-                username
+            return;
+        }
+
+
+        /* -----------------------------
+           VALIDAR USUÁRIO
+        ----------------------------- */
+
+        if (
+            username === USER.username &&
+            password === USER.password
+        ) {
+
+            showMessage(
+                "Login realizado com sucesso!",
+                "success"
             );
+
+
+            /* -----------------------------
+               LIMPAR LOGIN ANTERIOR
+            ----------------------------- */
+
+            localStorage.removeItem("craftLogged");
+            localStorage.removeItem("craftUser");
+
+            sessionStorage.removeItem("craftLogged");
+
+
+            /* -----------------------------
+               SALVAR LOGIN
+            ----------------------------- */
+
+            if (rememberInput && rememberInput.checked) {
+
+                localStorage.setItem(
+                    "craftLogged",
+                    "true"
+                );
+
+                localStorage.setItem(
+                    "craftUser",
+                    username
+                );
+
+            } else {
+
+                sessionStorage.setItem(
+                    "craftLogged",
+                    "true"
+                );
+
+                sessionStorage.setItem(
+                    "craftUser",
+                    username
+                );
+
+            }
+
+
+            /* -----------------------------
+               REDIRECIONAR
+            ----------------------------- */
+
+            setTimeout(() => {
+
+                window.location.replace("index.html");
+
+            }, 500);
 
         } else {
 
-            sessionStorage.setItem(
-                "craftLogged",
-                "true"
+            showMessage(
+                "Usuário ou senha incorretos.",
+                "error"
             );
 
         }
 
+    });
 
-        /*
-            REDIRECIONAMENTO
-
-            Troque "calculadora.html"
-            pelo nome da sua página.
-        */
-
-        setTimeout(() => {
-
-            window.location.href =
-                "calculadora.html";
-
-        }, 1000);
-
-    } else {
-
-        showMessage(
-            "Usuário ou senha incorretos.",
-            "error"
-        );
-
-    }
-
-});
+}
 
 
 /* =====================================
    ESQUECI A SENHA
 ===================================== */
 
-forgotPassword.addEventListener("click", function(event) {
+if (forgotPassword) {
 
-    event.preventDefault();
+    forgotPassword.addEventListener("click", function (event) {
 
-    showMessage(
-        "Entre em contato com o administrador para redefinir sua senha.",
-        "error"
-    );
+        event.preventDefault();
 
-});
+        showMessage(
+            "Entre em contato com o administrador para redefinir sua senha.",
+            "error"
+        );
+
+    });
+
+}
 
 
 /* =====================================
@@ -192,10 +204,27 @@ window.addEventListener("load", () => {
 
     if (loggedLocal === "true") {
 
-        usernameInput.value =
-            localStorage.getItem("craftUser") || "";
+        if (usernameInput) {
 
-        rememberInput.checked = true;
+            usernameInput.value =
+                localStorage.getItem("craftUser") || "";
+
+        }
+
+        if (rememberInput) {
+
+            rememberInput.checked = true;
+
+        }
+
+    } else if (loggedSession === "true") {
+
+        if (usernameInput) {
+
+            usernameInput.value =
+                sessionStorage.getItem("craftUser") || "";
+
+        }
 
     }
 
